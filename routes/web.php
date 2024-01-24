@@ -27,20 +27,8 @@ Route::get('/pendaftaran', Pendaftaran::class);
 Route::get('/blog', [BlogController::class, 'index']);
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog-show');
 
-// Route::get('/package', function () {
-//     return view('paketfile.package');
-// });
-
-// Route::get('/blogpage', function () {
-//     return view('blogfile.blogpage');
-// });
-
-// Route::get('/blogread', function () {
-//     return view('blogfile.blogread');
-// });
-
-// Route::get('/aboutus', function () {
-//     return view('component.aboutus');
-// });
+Route::get('/aboutus', function () {
+    return view('component.aboutus');
+});
 
 

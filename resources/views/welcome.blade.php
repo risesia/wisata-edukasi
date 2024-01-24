@@ -53,7 +53,7 @@
       <p class="mb-8 leading-relaxed text-blue-950"> Siapa saja ya yang sudah pernah berkunjung ke Wisata Edukasi ini? Yuk dilihat!</p>
 
         <button>
-          <a href="/blogpage" class="inline-block text-center text-lg font-medium text-white bg-blue-950 py-4 px-10 hover:bg-gray-500 hover:shadow-md md:w-flex p-4 ">Lebih Lanjut </a>
+          <a href="/blog" class="inline-block text-center text-lg font-medium text-white bg-blue-950 py-4 px-10 hover:bg-gray-500 hover:shadow-md md:w-flex p-4 ">Lebih Lanjut </a>
         </button>
     </div>
       
