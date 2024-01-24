@@ -31,7 +31,7 @@ class Pendaftaran extends Component implements HasForms
                     ->required()
                     ->helperText('Nama intitusi, sekolah, atau kelompok belajar.')
                     ->placeholder('Sekolah Swasta Eksplorasi Edukasi'),
-                
+
                 Forms\Components\Textarea::make('alamat_institusi')
                     ->autosize()
                     ->maxLength(1024)
@@ -59,9 +59,9 @@ class Pendaftaran extends Component implements HasForms
                         '3d' => 'Minimal 10 peserta. Maksimal 30 peserta. Rp. 20.000/peserta',
                         'sablon' => 'Minimal 5 peserta. Maksimal 30 peserta. 30.000/peserta',
                         'komplit' => 'Minimal 10 peserta. Maksimal 40 peserta. Rp 55.000/peserta'
-                    ])
-                    ->live(),
-                
+                    ]),
+                    // ->live(),
+
                 Forms\Components\TextInput::make('jumlah_peserta')
                     ->numeric(),
             ])

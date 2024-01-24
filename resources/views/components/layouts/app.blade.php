@@ -17,7 +17,6 @@
 
         @filamentStyles
         @vite('resources/css/app.css')
-        @bukStyles
     </head>
 
     <body class="antialiased">
@@ -25,6 +24,5 @@
 
         @filamentScripts
         @vite('resources/js/app.js')
-        @bukScripts
     </body>
 </html>
