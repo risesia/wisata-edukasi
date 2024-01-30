@@ -4,23 +4,21 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DaftarResource\Pages;
 use App\Filament\Resources\DaftarResource\RelationManagers;
+use App\Filament\Widgets\LatestDaftars;
 use App\Models\Daftar;
 use Filament\Forms;
-use Filament\Forms\Components;
-use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
-use Filament\Forms\FormsComponent;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DaftarResource extends Resource
 {
     protected static ?string $model = Daftar::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'List Pendaftaran';
 
     public static function form(Form $form): Form
     {
@@ -31,7 +29,7 @@ class DaftarResource extends Resource
                     ->required()
                     ->helperText('Nama intitusi, sekolah, atau kelompok belajar.')
                     ->placeholder('Sekolah Swasta Eksplorasi Edukasi'),
-                
+
                 Forms\Components\Textarea::make('alamat_institusi')
                     ->autosize()
                     ->maxLength(1024)
@@ -42,12 +40,16 @@ class DaftarResource extends Resource
                 Forms\Components\TextInput::make('nomor_institusi')
                     ->tel()
                     ->required()
+                    ->placeholder('081234567890')
                     ->helperText('Nomor WhatsApp yang dapat dihubungi.'),
 
-                Forms\Components\DatePicker::make('tanggal_kunjungan')
-                    ->helperText('Tenggal pelaksanaan wisata edukasi.'),
+                DatePicker::make('tanggal_kunjungan')
+                    ->helperText('Tenggal pelaksanaan wisata edukasi.')
+                    ->displayFormat('d/m/Y')
+                    ->required(),
 
                 Forms\Components\Radio::make('paket')
+                    ->required()
                     ->options([
                         'game' => 'Game Programming',
                         '3d' => '3D Printing',
@@ -55,15 +57,17 @@ class DaftarResource extends Resource
                         'komplit' => 'Komplit'
                     ])
                     ->descriptions([
-                        'game' => 'Minimal 5 peserta. Maksimal 25 peserta. Rp. 15.000/peserta',
-                        '3d' => 'Minimal 10 peserta. Maksimal 30 peserta. Rp. 20.000/peserta',
-                        'sablon' => 'Minimal 5 peserta. Maksimal 30 peserta. 30.000/peserta',
-                        'komplit' => 'Minimal 10 peserta. Maksimal 40 peserta. Rp 55.000/peserta'
-                    ]), 
-                    // ->live(),
-                
+                        'game' => 'Belajar membuat game seru dengan abang-abang profesional.',
+                        '3d' => 'Buat barang-barang unik dengan printer 3D.',
+                        'sablon' => 'Kreasi sablon dengan gambar yang dibuat sendiri.',
+                        'komplit' => 'Semua paket.'
+                    ]),
+                // ->live(),
+
                 Forms\Components\TextInput::make('jumlah_peserta')
-                    ->numeric(),
+                    ->numeric()
+                    ->required()
+                    ->helperText('Peserta yang akan hadir.'),
                     // ->minValue(//) // TODO minValue, maxValue, based on condition of Radio, eg. if game then min 5, max 10
                     // ->maxValue(//)
 
@@ -74,6 +78,11 @@ class DaftarResource extends Resource
                 //     )
                 //     ->minItems(//) // TODO minItems, maxItems, based on condition of Radio, eg. if game then min 5, max 10
                 //     ->maxItems(//)
+
+//                Forms\Components\ToggleButtons::make('status')
+//                    ->options([
+//                        -
+//                    ])
             ]);
     }
 
@@ -120,6 +129,13 @@ class DaftarResource extends Resource
             'index' => Pages\ListDaftars::route('/'),
             'create' => Pages\CreateDaftar::route('/create'),
             'edit' => Pages\EditDaftar::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            LatestDaftars::class,
         ];
     }
 }

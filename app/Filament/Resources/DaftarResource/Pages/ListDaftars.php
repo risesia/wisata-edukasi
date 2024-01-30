@@ -10,6 +10,8 @@ class ListDaftars extends ListRecords
 {
     protected static string $resource = DaftarResource::class;
 
+    protected static ?string $title = 'List Pendaftaran';
+
     protected function getHeaderActions(): array
     {
         return [

@@ -9,6 +9,8 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use Filament\Notifications;
+use Filament\Support\Enums\Alignment;
 
 class Pendaftaran extends Component implements HasForms
 {
@@ -42,12 +44,16 @@ class Pendaftaran extends Component implements HasForms
                 Forms\Components\TextInput::make('nomor_institusi')
                     ->tel()
                     ->required()
+                    ->placeholder('081234567890')
                     ->helperText('Nomor WhatsApp yang dapat dihubungi.'),
 
                 Forms\Components\DatePicker::make('tanggal_kunjungan')
+                    ->displayFormat('d/m/Y')
+                    ->required()
                     ->helperText('Tenggal pelaksanaan wisata edukasi.'),
 
                 Forms\Components\Radio::make('paket')
+                    ->required()
                     ->options([
                         'game' => 'Game Programming',
                         '3d' => '3D Printing',
@@ -55,15 +61,17 @@ class Pendaftaran extends Component implements HasForms
                         'komplit' => 'Komplit'
                     ])
                     ->descriptions([
-                        'game' => 'Minimal 5 peserta. Maksimal 25 peserta. Rp. 15.000/peserta',
-                        '3d' => 'Minimal 10 peserta. Maksimal 30 peserta. Rp. 20.000/peserta',
-                        'sablon' => 'Minimal 5 peserta. Maksimal 30 peserta. 30.000/peserta',
-                        'komplit' => 'Minimal 10 peserta. Maksimal 40 peserta. Rp 55.000/peserta'
+                        'game' => 'Belajar membuat game seru dengan abang-abang profesional.',
+                        '3d' => 'Buat barang-barang unik dengan printer 3D.',
+                        'sablon' => 'Kreasi sablon dengan gambar yang dibuat sendiri.',
+                        'komplit' => 'Semua paket.'
                     ]),
-                    // ->live(),
+                // ->live(),
 
                 Forms\Components\TextInput::make('jumlah_peserta')
-                    ->numeric(),
+                    ->numeric()
+                    ->required()
+                    ->helperText('Peserta yang akan hadir.'),
             ])
             ->statePath('data')
             ->model(Daftar::class);
@@ -76,6 +84,22 @@ class Pendaftaran extends Component implements HasForms
         $record = Daftar::create($data);
 
         $this->form->model($record)->saveRelationships();
+
+        Notifications\Notification::make()
+            ->title('Pendaftaran Diterima!')
+            ->success()
+            ->persistent()
+            ->body('Admin akan segera konfirmasi pendaftaran melalui WA.')
+            ->actions([
+                Notifications\Actions\Action::make('kembali')
+                    ->button()
+                    ->url('/'),
+                Notifications\Actions\Action::make('daftar_lagi')
+                    ->button()
+                    ->url('/pendaftaran'),
+            ])
+            ->color('success')
+            ->send();
     }
 
     public function render(): View

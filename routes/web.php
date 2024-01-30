@@ -32,3 +32,7 @@ Route::get('/aboutus', function () {
 });
 
 
+Route::get('/contact', function () {
+    return view('component.contact');
+});
+
