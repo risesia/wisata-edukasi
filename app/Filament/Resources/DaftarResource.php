@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\DaftarStatus;
 use App\Filament\Resources\DaftarResource\Pages;
 use App\Filament\Resources\DaftarResource\RelationManagers;
 use App\Filament\Widgets\LatestDaftars;
@@ -24,6 +25,11 @@ class DaftarResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\ToggleButtons::make('status_pendaftaran')
+                    ->inline()
+                    ->options(DaftarStatus::class)
+                    ->default('baru'),
+
                 Forms\Components\TextInput::make('nama_institusi')
                     ->maxLength(255)
                     ->required()
@@ -44,8 +50,12 @@ class DaftarResource extends Resource
                     ->helperText('Nomor WhatsApp yang dapat dihubungi.'),
 
                 DatePicker::make('tanggal_kunjungan')
+                    ->timezone('Asia/Jakarta')
+                    ->displayFormat('l, d F Y')
+                    ->native(false)
+                    ->placeholder('Monday, 1 January 2024')
                     ->helperText('Tenggal pelaksanaan wisata edukasi.')
-                    ->displayFormat('d/m/Y')
+                    ->closeOnDateSelection()
                     ->required(),
 
                 Forms\Components\Radio::make('paket')
@@ -62,39 +72,29 @@ class DaftarResource extends Resource
                         'sablon' => 'Kreasi sablon dengan gambar yang dibuat sendiri.',
                         'komplit' => 'Semua paket.'
                     ]),
-                // ->live(),
 
                 Forms\Components\TextInput::make('jumlah_peserta')
                     ->numeric()
                     ->required()
+                    ->placeholder('10')
                     ->helperText('Peserta yang akan hadir.'),
-                    // ->minValue(//) // TODO minValue, maxValue, based on condition of Radio, eg. if game then min 5, max 10
-                    // ->maxValue(//)
-
-                // Forms\Components\Repeater::make('daftar_nama_peserta')
-                //     ->simple(
-                //         Forms\Components\TextInput::make('nama_peserta')
-                //             ->required()
-                //     )
-                //     ->minItems(//) // TODO minItems, maxItems, based on condition of Radio, eg. if game then min 5, max 10
-                //     ->maxItems(//)
-
-//                Forms\Components\ToggleButtons::make('status')
-//                    ->options([
-//                        -
-//                    ])
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
+                Tables\Columns\TextColumn::make('nama_institusi')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('paket')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('nama_institusi')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('status_pendaftaran')
+                    ->label('Status')
+                    ->sortable()
+                    ->badge(),
                 Tables\Columns\TextColumn::make('tanggal_kunjungan')
                     ->searchable()
                     ->sortable(),

@@ -48,9 +48,13 @@ class Pendaftaran extends Component implements HasForms
                     ->helperText('Nomor WhatsApp yang dapat dihubungi.'),
 
                 Forms\Components\DatePicker::make('tanggal_kunjungan')
-                    ->displayFormat('d/m/Y')
-                    ->required()
-                    ->helperText('Tenggal pelaksanaan wisata edukasi.'),
+                    ->timezone('Asia/Jakarta')
+                    ->displayFormat('l, d F Y')
+                    ->native(false)
+                    ->placeholder('Monday, 1 January 2024')
+                    ->helperText('Tenggal pelaksanaan wisata edukasi.')
+                    ->closeOnDateSelection()
+                    ->required(),
 
                 Forms\Components\Radio::make('paket')
                     ->required()
@@ -71,6 +75,7 @@ class Pendaftaran extends Component implements HasForms
                 Forms\Components\TextInput::make('jumlah_peserta')
                     ->numeric()
                     ->required()
+                    ->placeholder('10')
                     ->helperText('Peserta yang akan hadir.'),
             ])
             ->statePath('data')
@@ -85,18 +90,20 @@ class Pendaftaran extends Component implements HasForms
 
         $this->form->model($record)->saveRelationships();
 
+        $nama_institusi = $data['nama_institusi'] ?? '';
+
+        $whatsappUrl = 'https://api.whatsapp.com/send/?phone=6281370177719&text=' . urlencode("Saya sudah mengisi form pendaftaran wisata edukasi Kidsnesia atas nama $nama_institusi. Mohon dikonfirmasi, terima kasih.") . '&type=phone_number&app_absent=0';
+
         Notifications\Notification::make()
             ->title('Pendaftaran Diterima!')
             ->success()
             ->persistent()
-            ->body('Admin akan segera konfirmasi pendaftaran melalui WA.')
+            ->body('Silahkan konfirmasi pendaftaran kepada Admin melalui WhatsApp.')
             ->actions([
-                Notifications\Actions\Action::make('kembali')
+                Notifications\Actions\Action::make('konfirmasi')
                     ->button()
-                    ->url('/'),
-                Notifications\Actions\Action::make('daftar_lagi')
-                    ->button()
-                    ->url('/pendaftaran'),
+                    ->color('success')
+                    ->url($whatsappUrl),
             ])
             ->color('success')
             ->send();

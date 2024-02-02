@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('daftars', function (Blueprint $table) {
             $table->id();
+            $table->enum('status_pendaftaran', ['baru', 'diterima', 'dibatalkan', 'selesai'])->default('baru');
             $table->string('nama_institusi');
             $table->longText('alamat_institusi');
             $table->string('nomor_institusi');
