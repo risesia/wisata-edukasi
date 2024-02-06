@@ -4,6 +4,7 @@ use App\Livewire\Pendaftaran;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use Stephenjude\FilamentBlog\Models\Post;
+use App\Models\Paket;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,9 @@ use Stephenjude\FilamentBlog\Models\Post;
 
 Route::get('/', function () {
     $posts = Post::published()->latest('published_at')->paginate(3);
+    $pakets = Paket::all();
 
-    return view('welcome', compact('posts'));
+    return view('welcome', compact('posts', 'pakets'));
 });
 
 Route::get('/pendaftaran', Pendaftaran::class);

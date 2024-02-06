@@ -7,10 +7,12 @@ use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use Filament\Notifications;
 use Filament\Support\Enums\Alignment;
+use App\Mail\PendaftaranDiterima;
 
 class Pendaftaran extends Component implements HasForms
 {
@@ -22,6 +24,9 @@ class Pendaftaran extends Component implements HasForms
     {
         $this->form->fill();
     }
+
+    public
+        $formSubmitted = false;
 
     public function form(Form $form): Form
     {
@@ -96,6 +101,8 @@ class Pendaftaran extends Component implements HasForms
 
     public function create(): void
     {
+        $this->formSubmitted = true;
+
         $data = $this->form->getState();
 
         $record = Daftar::create($data);
@@ -103,6 +110,8 @@ class Pendaftaran extends Component implements HasForms
         $this->form->model($record)->saveRelationships();
 
         $nama_institusi = $data['nama_institusi'] ?? '';
+
+        Mail::to($data['email_institusi'])->queue(new PendaftaranDiterima($nama_institusi));
 
         $whatsappUrl = 'https://api.whatsapp.com/send/?phone=6281370177719&text=' . urlencode("Saya sudah mengisi form pendaftaran wisata edukasi Kidsnesia atas nama $nama_institusi. Mohon dikonfirmasi, terima kasih.") . '&type=phone_number&app_absent=0';
 
@@ -115,10 +124,11 @@ class Pendaftaran extends Component implements HasForms
                 Notifications\Actions\Action::make('konfirmasi')
                     ->button()
                     ->color('success')
-                    ->url($whatsappUrl),
+                    ->url($whatsappUrl, shouldOpenInNewTab: true),
             ])
             ->color('success')
             ->send();
+
     }
 
     public function render(): View

@@ -55,13 +55,15 @@
 
             <dl class="col-span-2 grid grid-cols-1 gap-x-8 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:gap-y-16">
 
-                <div class="relative pl-9">
-                    <dt class="text-lg font-semibold text-darkblue">
-                        Explore 3D Zone
-                    </dt>
-                    <img src="images\TWE.png" class="lg:w-flex lg:h-auto rounded-lg shadow-none transition-shadow hover:shadow-lg hover:shadow-black/30" alt="" />
-                    <dd class="mt-2 text-purple1 text-justify">  Melalui workshop 3D printing, peserta akan memahami dasar-dasar teknologi 3D printing dan memiliki kesempatan untuk mencetak objek 3D kecil yang mereka desain sendiri. Ini adalah langkah awal menuju pemahaman mendalam tentang inovasi masa depan.</dd>
-                </div>
+           @foreach($pakets as $paket)
+                    <div class="relative pl-9">
+                        <dt class="text-lg font-semibold text-darkblue">
+                            {{ $paket->nama_paket }}
+                        </dt>
+                        <img src="$paket->gambar ? $paket->gambar : 'https://dummyimage.com/720x400' " class="lg:w-flex lg:h-auto rounded-lg shadow-none transition-shadow hover:shadow-lg hover:shadow-black/30" alt="" />
+                        <dd class="mt-2 text-purple1 text-justify"> {!! $paket->deskripsi !!}</dd>
+                    </div>
+           @endforeach
 
                 <div class="relative pl-9">
                     <dt class="text-lg font-semibold text-darkblue">
