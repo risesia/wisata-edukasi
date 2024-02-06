@@ -125,7 +125,7 @@
                 <div class="p-4 lg:w-1/3">
                     <div
                         class="h-full text-white hover:text-darkblue bg-pink1 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out hover:scale-110 hover:bg-softblue">
-                        <a class="text-2xl leading-10 font-bold">Kesenangan dan Pembelajaran</a>
+                        <a class="text-2xl leading-10 font-bold">Kesenangan & Pembelajaran</a>
                         <p class="leading-relaxed mt-10">Kami yakin bahwa kombinasi antara pembelajaran dan
                             kesenangan dalam lingkungan yang mendukung dan inspiratif akan menciptakan kenangan tak
                             terlupakan dan memberikan nilai tambah yang signifikan bagi setiap peserta.</p>
