@@ -104,9 +104,9 @@
 
                 <div class="p-4 lg:w-1/3">
                     <div
-                        class="h-full bg-babyblue bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out hover:scale-110 hover:bg-softblue">
-                        <a class="text-2xl text-darkblue leading-10 font-bold">Instruktur Berpengalaman</a>
-                        <p class="leading-relaxed mt-10 text-purple1">Dibimbing oleh Instruktur kami yang ahli dan
+                        class="text-white hover:text-darkblue h-full bg-pink1 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out hover:scale-110 hover:bg-softblue">
+                        <a class="text-2xl leading-10 font-bold">Instruktur Berpengalaman</a>
+                        <p class="leading-relaxed mt-10">Dibimbing oleh Instruktur kami yang ahli dan
                             berpengalaman dalam seni, desain, dan teknologi, siap memberikan bimbingan yang memadai
                             selama seluruh program.</p>
                     </div>
@@ -114,9 +114,9 @@
 
                 <div class="p-4 lg:w-1/3">
                     <div
-                        class="h-full bg-babyblue bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out hover:scale-110 hover:bg-softblue">
-                        <a class="text-2xl text-darkblue leading-10 font-bold">Fasilitas yang sudah Modern</a>
-                        <p class="leading-relaxed mt-10 text-purple1">Fasilitas modern yang kami sediakan menjamin
+                        class="text-white hover:text-darkblue h-full bg-pink1 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out hover:scale-110 hover:bg-softblue">
+                        <a class="text-2xl leading-10 font-bold">Fasilitas yang sudah Modern</a>
+                        <p class="leading-relaxed mt-10">Fasilitas modern yang kami sediakan menjamin
                             peserta mendapatkan pengalaman belajar yang optimal, dengan menggunakan peralatan terkini
                             dalam setiap kegiatan.</p>
                     </div>
@@ -124,9 +124,9 @@
 
                 <div class="p-4 lg:w-1/3">
                     <div
-                        class="h-full bg-babyblue bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out hover:scale-110 hover:bg-softblue">
-                        <a class="text-2xl text-darkblue leading-10 font-bold">Kesenangan dan Pembelajaran</a>
-                        <p class="leading-relaxed mt-10 text-purple1">Kami yakin bahwa kombinasi antara pembelajaran dan
+                        class="h-full text-white hover:text-darkblue bg-pink1 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative transition duration-300 ease-in-out hover:scale-110 hover:bg-softblue">
+                        <a class="text-2xl leading-10 font-bold">Kesenangan dan Pembelajaran</a>
+                        <p class="leading-relaxed mt-10">Kami yakin bahwa kombinasi antara pembelajaran dan
                             kesenangan dalam lingkungan yang mendukung dan inspiratif akan menciptakan kenangan tak
                             terlupakan dan memberikan nilai tambah yang signifikan bagi setiap peserta.</p>
                     </div>
