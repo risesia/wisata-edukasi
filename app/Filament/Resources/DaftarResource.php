@@ -36,12 +36,24 @@ class DaftarResource extends Resource
                     ->helperText('Nama intitusi, sekolah, atau kelompok belajar.')
                     ->placeholder('Sekolah Swasta Eksplorasi Edukasi'),
 
+                Forms\Components\TextInput::make('nama_penanggungjawab')
+                    ->maxLength(255)
+                    ->required()
+                    ->helperText('Penannggung jawab kegiatan wisata edukasi.')
+                    ->placeholder('Budi'),
+
                 Forms\Components\Textarea::make('alamat_institusi')
                     ->autosize()
                     ->maxLength(1024)
                     ->helperText('Alamat institusi, sekolah, atau kelompok belajar.')
                     ->placeholder('Jl. terminal, No. 88')
                     ->required(),
+
+                Forms\Components\TextInput::make('email_institusi')
+                    ->email()
+                    ->required()
+                    ->placeholder('budi@gmail.com')
+                    ->helperText('Alamat email yang dapat dihubungi.'),
 
                 Forms\Components\TextInput::make('nomor_institusi')
                     ->tel()

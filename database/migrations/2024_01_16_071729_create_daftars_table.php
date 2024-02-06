@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->enum('status_pendaftaran', ['baru', 'diterima', 'dibatalkan', 'selesai'])->default('baru');
             $table->string('nama_institusi');
+            $table->string('nama_penanggungjawab');
             $table->longText('alamat_institusi');
+            $table->string('email_institusi');
             $table->string('nomor_institusi');
             $table->date('tanggal_kunjungan');
             $table->string('paket');
