@@ -92,7 +92,7 @@ class Pendaftaran extends Component implements HasForms
                 Forms\Components\TextInput::make('jumlah_peserta')
                     ->numeric()
                     ->required()
-                    ->placeholder('10')
+                    ->placeholder('0')
                     ->helperText('Peserta yang akan hadir.'),
             ])
             ->statePath('data')

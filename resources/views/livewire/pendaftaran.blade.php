@@ -1,5 +1,5 @@
 
-<div>
+<div class="bg-gradient-to-b from-babyblue to-white">
 @include("component.navbar")
     @livewire('notifications')
     <form wire:submit.prevent="create" class="lg:mx-80 lg:mb-10 m-5">
