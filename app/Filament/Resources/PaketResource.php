@@ -51,7 +51,8 @@ class PaketResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nama_paket')
+                    ->searchable(),
             ])
             ->filters([
                 //
